@@ -1,0 +1,40 @@
+USE sql_and_tableau;
+
+-- Query 1: Total Enrollments, Completed Students, and Track Completion Rate Percentage
+SELECT 
+    t.track_name,
+    COUNT(e.student_id) AS total_enrollments,
+    SUM(CASE WHEN e.date_completed IS NOT NULL THEN 1 ELSE 0 END) AS total_completed,
+    ROUND(SUM(CASE WHEN e.date_completed IS NOT NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(e.student_id), 2) AS completion_rate_percentage
+FROM career_track_info t
+LEFT JOIN career_track_student_enrollments e ON t.track_id = e.track_id
+GROUP BY t.track_name
+ORDER BY total_enrollments DESC;
+
+-- Query 2: Average, Minimum, and Maximum Time-to-Completion (in Days) per Track
+SELECT 
+    t.track_name,
+    ROUND(AVG(DATEDIFF(e.date_completed, e.date_enrolled)), 1) AS avg_days_to_complete,
+    MIN(DATEDIFF(e.date_completed, e.date_enrolled)) AS min_days_to_complete,
+    MAX(DATEDIFF(e.date_completed, e.date_enrolled)) AS max_days_to_complete
+FROM career_track_student_enrollments e
+JOIN career_track_info t ON e.track_id = t.track_id
+WHERE e.date_completed IS NOT NULL
+GROUP BY t.track_name;
+
+-- Query 3: Monthly Acquisition Velocity and Enrollment Trends
+SELECT 
+    DATE_FORMAT(date_enrolled, '%Y-%m') AS enrollment_month,
+    COUNT(*) AS monthly_enrollments
+FROM career_track_student_enrollments
+GROUP BY enrollment_month
+ORDER BY enrollment_month ASC;
+
+-- Query 4: Multi-Track Enrolled Students (Cross-Learning Behavior)
+SELECT 
+    student_id,
+    COUNT(track_id) AS tracks_enrolled_count
+FROM career_track_student_enrollments
+GROUP BY student_id
+HAVING COUNT(track_id) > 1
+ORDER BY tracks_enrolled_count DESC;
