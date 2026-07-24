@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS sql_and_tableau;
+USE sql_and_tableau;
+
+-- Drop tables if they already exist to ensure a clean setup
+DROP TABLE IF EXISTS `career_track_student_enrollments`;
+DROP TABLE IF EXISTS `career_track_info`;
+
+-- Table structure for career_track_info
+CREATE TABLE `career_track_info` (
+  `track_id` tinyint NOT NULL,
+  `track_name` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`track_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Table structure for career_track_student_enrollments
+CREATE TABLE `career_track_student_enrollments` (
+  `student_id` int NOT NULL,
+  `track_id` tinyint NOT NULL,
+  `date_enrolled` date DEFAULT NULL,
+  `date_completed` date DEFAULT NULL,
+  PRIMARY KEY (`student_id`, `track_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
