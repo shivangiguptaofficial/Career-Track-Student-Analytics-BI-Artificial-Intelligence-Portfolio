@@ -44,6 +44,27 @@ By synthesizing insights across relational SQL extraction, Python scripting, and
 * **Artificial Intelligence & Machine Learning:** Scikit-Learn (`RandomForestClassifier`, train-test splitting, feature importance scoring, classification metrics).
 * **Business Intelligence & KPIs:** Tableau Desktop (Interactive dashboards, conversion funnels, time-to-completion tracking).
 * **Version Control:** Git & GitHub.
+  
+  ---
+
+## 🚀 How to Run the Project Locally
+
+Follow these steps to set up and execute this project on your local machine:
+
+### 1. Database Setup (MySQL)
+* Open your MySQL client (e.g., MySQL Workbench).
+* Run the script located in `sql/schema.sql` to create the database and tables.
+* Execute the analytical queries found in `sql/analysis_queries.sql`.
+
+### 2. Install Python Dependencies & Run Scripts
+Install the required libraries and execute the scripts using your terminal:
+
+```bash
+pip install -r requirements.txt
+python python/exploratory_analysis.py
+python python/ai_student_prediction.py
+
+```
 
 ---
 
