@@ -8,19 +8,19 @@
 
 ---
 
-## 1. Project Overview
+## 1. 🌐 Project Overview
 This comprehensive data analytics and artificial intelligence portfolio project investigates student enrollment trajectories, learning track performance, and retention bottlenecks across three professional career tracks: **Data Scientist**, **Data Analyst**, and **Business Analyst**. The repository provides an end-to-end framework covering relational database design, advanced SQL querying, exploratory data analysis (EDA), predictive modeling using machine learning, and interactive Business Intelligence (BI) dashboards.
 
 ---
 
-## 2. Dataset Architecture
+## 2. 🗄️ Dataset Architecture
 The underlying relational database (`sql_and_tableau`) consists of two core normalized tables designed to maintain data integrity and transactional efficiency:
-1. **`career_track_info`**: A master lookup table mapping professional track IDs to track names (`Data Scientist`, `Data Analyst`, `Business Analyst`).
-2. **`career_track_student_enrollments`**: A transactional table tracking student registration timestamps (`date_enrolled`) and track completion milestones (`date_completed`).
+* **`career_track_info`**: A master lookup table mapping professional track IDs to track names (`Data Scientist`, `Data Analyst`, `Business Analyst`).
+* **`career_track_student_enrollments`**: A transactional table tracking student registration timestamps (`date_enrolled`) and track completion milestones (`date_completed`).
 
 ---
 
-## 3. Key Business Questions Addressed
+## 3. 🎯 Key Business Questions Addressed
 * **Volume & Popularity:** Which professional career track attracts the highest volume of student enrollments?
 * **Conversion Success:** What is the overall completion rate percentage for each learning track?
 * **Duration & Bottlenecks:** What is the average, minimum, and maximum time-to-completion (measured in days) for students finishing a track?
@@ -30,7 +30,7 @@ The underlying relational database (`sql_and_tableau`) consists of two core norm
 
 ---
 
-## 4. Executive Summary
+## 4. 📊 Executive Summary
 By synthesizing insights across relational SQL extraction, Python scripting, and Tableau visualization, this project reveals critical behavioral patterns in online professional education:
 * **Track Popularity vs. Completion:** While certain tracks command higher upfront enrollment numbers, completion rates vary significantly, highlighting potential engagement drop-offs.
 * **Time-to-Completion Efficiency:** Quantifying completion durations enables curriculum directors to identify structural bottlenecks and adjust pacing.
@@ -38,7 +38,7 @@ By synthesizing insights across relational SQL extraction, Python scripting, and
 
 ---
 
-## 5. Tech Stack & Tools
+## 5. 🛠️ Tech Stack & Tools
 * **Database & Advanced SQL:** MySQL 8.0 (Schema normalization, Primary/Foreign keys, joins, conditional expressions, date arithmetic via `DATEDIFF`).
 * **Data Processing & EDA:** Python (`Pandas`, `NumPy`), Matplotlib, Seaborn.
 * **Artificial Intelligence & Machine Learning:** Scikit-Learn (`RandomForestClassifier`, train-test splitting, feature importance scoring, classification metrics).
@@ -47,7 +47,7 @@ By synthesizing insights across relational SQL extraction, Python scripting, and
 
 ---
 
-## 6. Repository Directory Structure
+## 6. 📂 Repository Directory Structure
 ```text
 sql-tableau-career-track-analytics/
 │
@@ -60,4 +60,3 @@ sql-tableau-career-track-analytics/
 │   └── ai_student_prediction.py
 └── tableau/
     └── dashboard_blueprint.md
-
