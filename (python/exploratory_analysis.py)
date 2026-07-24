@@ -1,0 +1,54 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import pymysql
+import seaborn as sns
+
+sns.set_theme(style="whitegrid")
+
+# Establish secure connection to local MySQL database
+connection = pymysql.connect(
+    host="localhost", user="root", password="your_password", database="sql_and_tableau"
+)
+
+# Load data into pandas DataFrames
+query_enrollments = "SELECT * FROM career_track_student_enrollments;"
+query_tracks = "SELECT * FROM career_track_info;"
+
+df_enrollments = pd.read_sql(query_enrollments, con=connection)
+df_tracks = pd.read_sql(query_tracks, con=connection)
+connection.close()
+
+# Merge tracking tables & Feature Engineering
+df = pd.merge(df_enrollments, df_tracks, on="track_id", how="left")
+df["date_enrolled"] = pd.to_datetime(df["date_enrolled"])
+df["date_completed"] = pd.to_datetime(df["date_completed"])
+df["is_completed"] = df["date_completed"].notnull()
+df["duration_days"] = (df["date_completed"] - df["date_enrolled"]).dt.days
+
+# Summary Statistics
+print("--- Career Track Enrollment Summary ---")
+print(df["track_name"].value_counts())
+
+# Generate & Save Seaborn/Matplotlib Visualization
+plt.figure(figsize=(10, 6))
+enrollment_counts = df["track_name"].value_counts().reset_index()
+enrollment_counts.columns = ["track_name", "count"]
+
+sns.barplot(
+    data=enrollment_counts,
+    x="track_name",
+    y="count",
+    palette="Blues_d",
+    edgecolor="black",
+)
+plt.title(
+    "Total Student Enrollments by Career Track", fontsize=14, fontweight="bold"
+)
+plt.xlabel("Career Track", fontsize=12)
+plt.ylabel("Number of Students", fontsize=12)
+plt.tight_layout()
+
+plt.savefig("enrollment_distribution.png", dpi=300)
+print(
+    "[INFO] Visualization successfully saved as 'enrollment_distribution.png'"
+)
