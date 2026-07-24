@@ -38,6 +38,11 @@ By synthesizing insights across relational SQL extraction, Python scripting, and
 
 ---
 
+## 📊 Key Findings & Insights
+For a detailed, data-backed analysis on student enrollment, track popularity, completion rates, and time-to-completion distributions, check out the [KEY_FINDINGS.md](KEY_FINDINGS.md) file generated from our database pipeline.
+
+---
+
 ## 5. 🛠️ Tech Stack & Tools
 * **Database & Advanced SQL:** MySQL 8.0 (Schema normalization, Primary/Foreign keys, joins, conditional expressions, date arithmetic via `DATEDIFF`).
 * **Data Processing & EDA:** Python (`Pandas`, `NumPy`), Matplotlib, Seaborn.
